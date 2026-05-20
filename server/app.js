@@ -10,13 +10,12 @@ app.use(express.static(path.join(__dirname, '../public')));
 let db;
 
 (async () => {
-    // Открываем файл базы данных (он создастся сам)
+    
     db = await open({
         filename: path.join(__dirname, 'database.db'),
         driver: sqlite3.Database
     });
 
-    // Создаем таблицы, если их еще нет
     await db.exec(`
         CREATE TABLE IF NOT EXISTS products (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
